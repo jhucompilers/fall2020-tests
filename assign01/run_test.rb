@@ -12,4 +12,9 @@ exe_dir = ENV['ASSIGN01_DIR']
 exe = "#{exe_dir}/minicalc"
 raise "#{exe} is not executable" if !FileTest.executable?(exe)
 
+# command line argument is the test name
+
+raise "Usage: ./run_test.rb <testname>" if ARGV.length != 1
+testname = ARGV.shift
+
 puts "TOOD: stuff"
