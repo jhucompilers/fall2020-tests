@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
-# This script generates an expected output file for a specified
-# input file.
+# This script generates an expected output file or expected error
+# file (whichever is appropriate) for a specified input file.
 
 if [ $# -eq 0 ]; then
   echo "No"
@@ -10,4 +10,17 @@ fi
 
 testname=$(basename $1 .in)
 
-$ASSIGN01_DIR/minicalc $1 > expected_output/$testname.out
+expected_output_file=expected_output/$testname.out
+expected_error_file=expected_error/$testname.out
+
+$ASSIGN01_DIR/minicalc $1 > $expected_output_file 2> $expected_error_file
+
+if [ -f $expected_output_file ] && [ ! -s $expected_output_file ]; then
+  # expected output file is empty, delete it
+  rm $expected_output_file
+fi
+
+if [ -f $expected_error_file ] && [ ! $expected_error_file ]; then
+  # expected error file is empty, delete it
+  rm $expected_error_file
+fi

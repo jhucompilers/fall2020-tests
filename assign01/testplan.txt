@@ -13,8 +13,13 @@ tokenization
 
 variables and assignment
   chained assignment
+  variables with multi-character names
+  variables with names containing digits
+  mixed case identifiers are allowed
+  case is significant in identifiers
 
 error reporting
+  lexical analysis error
   left hand side of assignment is not an identifier
   use of undefined variable
   exponentation with negative exponent
