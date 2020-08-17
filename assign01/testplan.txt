@@ -15,3 +15,6 @@ variables and assignment
   chained assignment
 
 error reporting
+  left hand side of assignment is not an identifier
+  use of undefined variable
+  exponentation with negative exponent
