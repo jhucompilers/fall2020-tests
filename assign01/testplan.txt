@@ -18,3 +18,5 @@ error reporting
   left hand side of assignment is not an identifier
   use of undefined variable
   exponentation with negative exponent
+  parse error (error should be reported on correct line, and ideally,
+    correct token)
