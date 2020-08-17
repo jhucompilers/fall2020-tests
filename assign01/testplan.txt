@@ -1,0 +1,11 @@
+basic arithmetic
+  +
+  -
+  *
+  /
+  ^
+  precedence and associativity of operators
+  use of parentheses to force evaluation order
+
+variables and assignment
+  chained assignment

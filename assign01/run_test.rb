@@ -29,7 +29,7 @@ raise "Missing expected output file #{expected_output_filename}" if !(FileTest.r
 
 # Run the executable on the named test
 cmd = [exe, input_file]
-puts "cmd is: #{cmd.join(' ')}"
+#puts "cmd is: #{cmd.join(' ')}"
 stdout_str, stderr_str, status = Open3.capture3(*cmd, stdin_data: '')
 if !status.success?
   puts "Test command failed"
