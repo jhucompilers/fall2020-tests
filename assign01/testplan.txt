@@ -7,5 +7,11 @@ basic arithmetic
   precedence and associativity of operators
   use of parentheses to force evaluation order
 
+tokenization
+  varying whitespace (or lack of whitespace)
+  expressions on multiple lines
+
 variables and assignment
   chained assignment
+
+error reporting
