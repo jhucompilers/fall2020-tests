@@ -41,9 +41,55 @@ def check_actual_vs_expected_output(actual_output_filename, expected_output_file
   end
 end
 
+def find_error(filename)
+  tuple = nil
+  File.open(filename) do |f|
+    f.each_line do |line|
+      if tuple.nil? && (m = /^([^:]+):(\d+):(\d+): Error: .*$/.match(line))
+        tuple = [m[1], m[2], m[3]]
+      end
+    end
+  end
+  return tuple
+end
+
 def check_actual_vs_expected_error(actual_error_filename, expected_error_filename, exit_code)
-  puts "TODO: check error output"
-  exit 1
+  # By default, error message is considered correct if it is formatted correctly
+  # has the correct filename, and has the correct line number.
+  # If the '-c' option is in effect, then the column number must also be
+  # within 1 of the correct value.
+  actual_error = find_error(actual_error_filename)
+  expected_error = find_error(expected_error_filename)
+
+  raise "No error message found in #{expected_error_filename}" if expected_error.nil?
+
+  # Make sure an error message was produced
+  if actual_error.nil?
+    puts "Missing or invalid error message in #{actual_error_filename}"
+  end
+
+  # Check filename
+  if actual_error[0] != expected_error[0]
+    puts "Filename in error message doesn't match (expected '#{expected_error[0]}', saw '#{actual_error[0]}'"
+    exit 1
+  end
+
+  # Check line number
+  if actual_error[1] != expected_error[1]
+    puts "Line number in error message doesn't match (expected '#{expected_error[1]}', saw '#{actual_error[1]}'"
+    exit 1
+  end
+
+  # Check column number (if -c option was used)
+  if $OPT == '-c'
+    col_diff = actual_error[2].to_i - expected_error[2].to_i
+    if col_diff < -1 || col_diff > 1
+      puts "Column number in error message doesn't match (expected '#{expected_error[2]}', saw '#{actual_error[2]}'"
+    end
+  end
+
+  puts "Test passed!"
+  exit 0
 end
 
 # ----------------------------------------------------------------------
@@ -56,6 +102,12 @@ exe_dir = ENV['ASSIGN01_DIR']
 # make sure executable exists
 exe = "#{exe_dir}/minicalc"
 raise "#{exe} is not executable" if !FileTest.executable?(exe)
+
+# see if there is an option argument
+$OPT = ''
+if ARGV.length == 2 && ARGV[0].start_with?('-')
+  $OPT = ARGV.shift
+end
 
 # command line argument is the test name
 raise "Usage: ./run_test.rb <testname>" if ARGV.length != 1
