@@ -16,7 +16,12 @@ def write_output(dirname, filename, s)
 
     output_filename = "#{dirname}/#{filename}"
     File.open(output_filename, 'w') do |out|
-      out.print s
+      # Don't save lines beginning with "Debug:"
+      s.lines.each do |line|
+        if !/^Debug:/i.match(line)
+          out.print line
+        end
+      end
     end
   end
 end

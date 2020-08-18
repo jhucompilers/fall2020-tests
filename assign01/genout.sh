@@ -13,7 +13,7 @@ testname=$(basename $1 .in)
 expected_output_file=expected_output/$testname.out
 expected_error_file=expected_error/$testname.out
 
-$ASSIGN01_DIR/minicalc $1 > $expected_output_file 2> $expected_error_file
+($ASSIGN01_DIR/minicalc $1 | egrep -i -v "^Debug:") > $expected_output_file 2> $expected_error_file
 
 if [ -f $expected_output_file ] && [ ! -s $expected_output_file ]; then
   # expected output file is empty, delete it
