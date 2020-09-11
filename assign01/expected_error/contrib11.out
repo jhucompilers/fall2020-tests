@@ -1,0 +1,1 @@
+input/contrib11.in:3:17: Error: Weak variable 'a' may not be defined cyclically
