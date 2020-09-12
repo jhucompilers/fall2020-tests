@@ -60,7 +60,7 @@ end
 
 def check_actual_vs_expected_error(actual_error_filename, expected_error_filename, exit_code)
   # By default, error message is considered correct if it is formatted correctly
-  # has the correct filename, and has the correct line number.
+  # has the correct filename, and (unless -n option is specified) has the correct line number.
   # If the '-c' option is in effect, then the column number must also be
   # within 1 of the correct value.
   actual_error = find_error(actual_error_filename)
@@ -75,17 +75,17 @@ def check_actual_vs_expected_error(actual_error_filename, expected_error_filenam
 
   # Check filename
   if actual_error[0] != expected_error[0]
-    puts "Filename in error message doesn't match (expected '#{expected_error[0]}', saw '#{actual_error[0]}'"
+    puts "Filename in error message doesn't match (expected '#{expected_error[0]}', saw '#{actual_error[0]}')"
     exit 1
   end
 
-  # Check line number
-  if actual_error[1] != expected_error[1]
-    puts "Line number in error message doesn't match (expected '#{expected_error[1]}', saw '#{actual_error[1]}'"
+  # Check line number if (if -n option was NOT used)
+  if $OPT != '-n' && actual_error[1] != expected_error[1]
+    puts "Line number in error message doesn't match (expected '#{expected_error[1]}', saw '#{actual_error[1]}')"
     exit 1
   end
 
-  # Check column number (if -c option was used)
+  # Check column number (-c option was used)
   if $OPT == '-c'
     col_diff = actual_error[2].to_i - expected_error[2].to_i
     if col_diff < -1 || col_diff > 1
@@ -108,7 +108,7 @@ exe_dir = ENV['ASSIGN01_DIR']
 exe = "#{exe_dir}/minicalc"
 raise "#{exe} is not executable" if !FileTest.executable?(exe)
 
-# see if there is an option argument
+# see if there an option argument was specified on the command line
 $OPT = ''
 if ARGV.length == 2 && ARGV[0].start_with?('-')
   $OPT = ARGV.shift
@@ -127,6 +127,12 @@ expected_output_filename = "expected_output/#{testname}.out"
 expected_error_filename = "expected_error/#{testname}.out"
 if !FileTest.readable?(expected_output_filename) && !FileTest.readable?(expected_error_filename)
   raise "Neither expected output nor expected error files exist"
+end
+
+# If an option was not specified on the command line, see if
+# an option file exists, and if so, read it
+if $OPT == '' && FileTest.readable?("option/#{testname}.in")
+  $OPT = File.read("option/#{testname}.in").rstrip
 end
 
 # Run the executable on the named test
