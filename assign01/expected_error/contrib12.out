@@ -1,1 +1,1 @@
-input/contrib12.in:2:8: Error: Weak assignments must be top-level expressions
+input/contrib12.in:1:13: Error: Negative exponent
