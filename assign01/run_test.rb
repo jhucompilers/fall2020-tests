@@ -47,6 +47,7 @@ def check_actual_vs_expected_output(actual_output_filename, expected_output_file
 end
 
 def find_error(filename)
+  return nil if !FileTest.readable?(filename)
   tuple = nil
   File.open(filename) do |f|
     f.each_line do |line|
@@ -71,6 +72,7 @@ def check_actual_vs_expected_error(actual_error_filename, expected_error_filenam
   # Make sure an error message was produced
   if actual_error.nil?
     puts "Missing or invalid error message in #{actual_error_filename}"
+    exit 1
   end
 
   # Check filename
