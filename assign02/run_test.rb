@@ -140,7 +140,12 @@ end
 # Run the executable on the named test
 cmd = [exe, input_file]
 #puts "cmd is: #{cmd.join(' ')}"
-stdout_str, stderr_str, status = Open3.capture3(*cmd, stdin_data: '')
+stdin_data = ''
+if FileTest.readable?("data/#{testname}.in")
+  # A data file exists, so send it as standard input to the program
+  stdin_data = File.read("data/#{testname}.in")
+end
+stdout_str, stderr_str, status = Open3.capture3(*cmd, stdin_data: stdin_data)
 if !status.exited?
   puts "Test command failed"
   if !stderr_str.empty?
