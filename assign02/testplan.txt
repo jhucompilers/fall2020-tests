@@ -1,0 +1,12 @@
+arith: basic arithmetic
+assign: variables, assignments
+error: error is reported for referring to undefined variable
+condition: computation of expressions with logical and relational operators
+decision: decisions (if, if/else)
+loop: while loops
+function: functions
+recursion: recursive functions
+output: calling intrinsic output functions
+input: calling intrinsic input function (readint)
+cons: creating and using lists (including formatting)
+tokenization: unusual tokenization
