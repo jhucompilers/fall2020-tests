@@ -10,3 +10,4 @@ output: calling intrinsic output functions
 input: calling intrinsic input function (readint)
 cons: creating and using lists (including formatting)
 tokenization: unusual tokenization
+comment: input programs with comments
