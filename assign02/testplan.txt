@@ -1,7 +1,11 @@
 arith: basic arithmetic
+  make sure unary - is tested
 assign: variables, assignments
+  uninitialized variables have the value 0
 error: error is reported for referring to undefined variable
 condition: computation of expressions with logical and relational operators
+  make sure all relational operators are tested
+  make sure logical operators are short-circuiting
 decision: decisions (if, if/else)
 loop: while loops
 function: functions
