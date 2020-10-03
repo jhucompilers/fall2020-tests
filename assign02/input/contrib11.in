@@ -1,0 +1,8 @@
+var a, b, c;
+a = cons(1, nil());
+b = 2;
+c = 3;
+if ((b * c) == 6) {
+  c = a;
+}
+c * a;

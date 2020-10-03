@@ -1,0 +1,8 @@
+var a, b, c;
+a = cons(1, nil());
+b = 0;
+c = 1;
+if (c - b) {
+  c = -c;
+}
+a - c;

@@ -1,0 +1,17 @@
+var a, b, c, d;
+b = 1;
+c = 0;
+if (b || c) {
+  a = c - b;
+}
+if ((c = b + a) || println(c)) {
+  // no-op
+} else {
+  d = 1;
+}
+
+function squirt(a) {
+  a + 1;
+}
+
+d - squirt(0) || println;

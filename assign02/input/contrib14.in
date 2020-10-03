@@ -1,0 +1,12 @@
+var a, b, c;
+b = 1;
+c = 0;
+if (b && (b + b)) {
+  b = b && c;
+}
+if (b) {
+  // no-op
+} else {
+  b = cons(1, nil());
+}
+a && b;

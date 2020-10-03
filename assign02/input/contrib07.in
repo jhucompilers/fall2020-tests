@@ -1,0 +1,4 @@
+var a, b;
+a = nil();
+b = nil();
+a == b;

@@ -1,0 +1,5 @@
+var a;
+if (-nilp(nil())) {
+  a = print;
+}
+-a;

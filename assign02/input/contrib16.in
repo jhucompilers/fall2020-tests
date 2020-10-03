@@ -1,0 +1,7 @@
+function test(x, y, z) {
+  list(x, y, z);
+}
+
+if (car(list(1, 2, 3))) {
+  test(0, 0, 0, 0, 0);
+}
