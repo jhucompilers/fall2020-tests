@@ -5,7 +5,7 @@ function addtomembers(lst, n) {
   if (nilp(lst)) {
     result = lst;
   } else {
-    result = cons(cdr(lst) + n, addtomembers(car(lst), n));
+    result = cons(car(lst) + n, addtomembers(cdr(lst), n));
   }
   result;
 }
