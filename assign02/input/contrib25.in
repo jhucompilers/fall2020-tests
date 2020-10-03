@@ -1,0 +1,21 @@
+var e;
+
+e = 4;
+
+function d() {
+  e * e;
+}
+
+function c() {
+  d();
+}
+
+function b() {
+  e = c();
+}
+
+function a() {
+  b();
+}
+
+e + a();
