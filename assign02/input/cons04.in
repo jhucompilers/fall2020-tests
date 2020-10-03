@@ -4,7 +4,7 @@ function map(f, lst) {
   if (nilp(lst)) {
     result = lst;
   } else {
-    result = cons(f(car(lst)), map(f, cdr(lst)));
+    result = cons(f(cdr(lst)), map(f, car(lst)));
   }
   result;
 }
