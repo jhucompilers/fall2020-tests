@@ -1,0 +1,10 @@
+function a() {
+  1;
+}
+
+function b() {
+  var a;
+  a;
+}
+
+b();
