@@ -1,0 +1,13 @@
+var e;
+
+function a() {
+  c + 1;
+}
+
+function b() {
+  var d;
+  d = 1 + e;
+  a() + d;
+}
+
+b();
