@@ -1,0 +1,8 @@
+PROGRAM arrao03;
+
+    TYPE Empty = ARRAY 0 OF INTEGER;
+    VAR a, b: Empty;
+
+BEGIN
+    a := b;
+END.

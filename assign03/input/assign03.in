@@ -1,0 +1,13 @@
+PROGRAM assign03;
+    TYPE P = RECORD x: INTEGER; END;
+
+    TYPE R = RECORD x, y: INTEGER; END;
+    TYPE Q = RECORD a, b: P; END;
+
+    TYPE T = RECORD d: ARRAY 5 OF Q; END;
+
+    VAR a: ARRAY 5 OF R;
+    VAR b: T;
+BEGIN
+    a := b;
+END.
