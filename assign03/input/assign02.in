@@ -7,5 +7,7 @@ PROGRAM assign02;
     VAR a: ARRAY 5 OF R;
     VAR b: ARRAY 5 OF Q;
 BEGIN
-    a := b;
+    -- a := b;
+    a[0].x := 4;
+    b[0].a.x := 5;
 END.
