@@ -9,5 +9,7 @@ PROGRAM assign03;
     VAR a: ARRAY 5 OF R;
     VAR b: T;
 BEGIN
-    a := b;
+    -- a := b;
+    a[0].y := 42;
+    b.d[0].a.x := 17;
 END.

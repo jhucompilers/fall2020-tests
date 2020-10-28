@@ -9,5 +9,7 @@ PROGRAM assign04;
     VAR a: ARRAY 10 OF R;
     VAR b: ARRAY 2  OF T;
 BEGIN
-    a := b;
+    -- a := b;
+    a[4].x := 99;
+    b[1].d[0].a.x := a[4].x;
 END.
