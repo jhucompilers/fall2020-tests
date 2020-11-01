@@ -3,7 +3,7 @@
 require 'open3'
 
 testname = ARGV.shift
-raise "Usage: compile.rb <testname>" if testname.nil?
+raise "Usage: build.rb <testname>" if testname.nil?
 
 raise "ASSIGN04_DIR environment variable must be defined" if !ENV.has_key?('ASSIGN04_DIR')
 compiler_exe = "#{ENV['ASSIGN04_DIR']}/compiler"
@@ -16,11 +16,11 @@ if !status.success?
   exit 1
 end
 
-asm_src = "compiler_output/#{testname}.S"
-gen_exe = "compiler_output/#{testname}"
+asm_src = "out/#{testname}.S"
+gen_exe = "out/#{testname}"
 
-system("mkdir -p compiler_output")
-File.open("compiler_output/#{testname}.S", 'w') do |outf|
+system("mkdir -p out")
+File.open("out/#{testname}.S", 'w') do |outf|
   outf.print out
 end
 
