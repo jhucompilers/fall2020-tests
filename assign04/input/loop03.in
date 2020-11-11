@@ -4,6 +4,8 @@ PROGRAM loop03;
 BEGIN
   READ n;
 
+  count := 0;
+
   WHILE n > 1 DO
     n := n DIV 2;
     count := count + 1;
