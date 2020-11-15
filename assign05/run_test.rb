@@ -29,8 +29,15 @@ end
 # Main script
 # ----------------------------------------------------------------------
 
+# see if there was a command line option (if so, it will be passed to build.rb,
+# and in turn it will be passed to the compiler)
+opt = ''
+if ARGV.length > 0 && ARGV[0].start_with?('-')
+  opt = ARGV.shift
+end
+
 # command line argument is the test name
-raise "Usage: ./run_test.rb <testname>" if ARGV.length != 1
+raise "Usage: ./run_test.rb [option] <testname>" if ARGV.length != 1
 testname = ARGV.shift
 
 # Make sure that input file exists (otherwise, the test doesn't exist)
@@ -52,7 +59,7 @@ if !FileTest.readable?(input_data_filename)
 end
 
 # Build the target program
-rc = system("./build.rb #{testname} > /dev/null 2> /dev/null")
+rc = system("./build.rb #{opt} #{testname} > /dev/null 2> /dev/null")
 if !rc
   STDERR.puts "Compiler command failed"
   exit 1
